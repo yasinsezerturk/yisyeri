@@ -1,61 +1,47 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useId, useRef } from "react";
+import { createPortal } from "react-dom";
+import { X } from "lucide-react";
 
-const ModalVideo = ({ src, onClose }) => {
+const ModalVideo = ({ src, poster, title = "Haber videosu", onClose }) => {
+  const dialogRef = useRef(null);
+  const closeRef = useRef(null);
   const videoRef = useRef(null);
-
-  const safePlay = (videoEl) => {
-    if (videoEl && typeof videoEl.play === "function") {
-      videoEl.play().catch(() => {});
-    }
-  };
-
-  const safePause = (videoEl) => {
-    if (videoEl && typeof videoEl.pause === "function") {
-      videoEl.pause();
-    }
-  };
+  const titleId = useId();
 
   useEffect(() => {
-    const videoEl = videoRef.current;
-    safePlay(videoEl);
-
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", handleKeyDown);
+    const dialog = dialogRef.current;
+    const video = videoRef.current;
+    const trigger = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+    closeRef.current.focus();
 
     return () => {
-      safePause(videoEl);
-      document.removeEventListener("keydown", handleKeyDown);
+      video?.pause();
+      if (dialog.open && typeof dialog.close === "function") dialog.close();
+      document.body.style.overflow = previousOverflow;
+      if (trigger?.isConnected) trigger.focus();
     };
-  }, [src, onClose]);
+  }, []);
 
-  return (
-    <div
-      className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-      onClick={onClose}
+  return createPortal(
+    <dialog
+      ref={dialogRef}
+      aria-labelledby={titleId}
+      aria-modal="true"
+      className="fixed inset-0 m-auto max-h-[calc(100svh-2rem)] w-[calc(100%-2rem)] max-w-4xl overflow-y-auto rounded-xl bg-gray-950 p-0 text-white shadow-2xl backdrop:bg-black/75"
+      onCancel={(event) => { event.preventDefault(); onClose(); }}
+      onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
     >
-      <div
-        className="relative bg-black p-4 rounded-lg max-w-3xl w-full"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          aria-label="Kapat"
-          className="absolute -top-10 right-0 text-white text-3xl font-bold hover:text-red-400 transition"
-        >
-          ×
-        </button>
-
-        <video
-          ref={videoRef}
-          src={src}
-          controls
-          autoPlay
-          className="w-full h-auto rounded shadow-lg"
-        />
+      <div className="flex items-center justify-between gap-4 px-4 py-2">
+        <h2 id={titleId} className="font-semibold">{title}</h2>
+        <button ref={closeRef} type="button" onClick={onClose} aria-label="Videoyu kapat" className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"><X aria-hidden="true" /></button>
       </div>
-    </div>
+      <video ref={videoRef} src={src} poster={poster} controls autoPlay playsInline preload="metadata" className="max-h-[75svh] w-full bg-black" />
+    </dialog>,
+    document.body
   );
 };
 

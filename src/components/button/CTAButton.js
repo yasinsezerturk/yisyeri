@@ -1,8 +1,6 @@
-
-
-const CTAButton = ({ 
-  children, 
-  isFixed = false, 
+const CTAButton = ({
+  children,
+  isFixed = false,
   variant = "green",
   onClick,
   href,
@@ -11,54 +9,27 @@ const CTAButton = ({
   className = "",
   icon,
   showIcon = true,
-  ...props 
+  ...props
 }) => {
-  // Base stiller
-  const baseClasses = "font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
-  
-  // Variants
+  const baseClasses = "min-h-11 min-w-0 inline-flex items-center justify-center gap-2 text-center font-semibold leading-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
   const variants = {
-    grey: "bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500",
-    green: "bg-green-600 hover:bg-green-700 text-white focus:ring-green-500",
+    grey: "bg-gray-600 hover:bg-gray-700 text-white focus-visible:ring-gray-500",
+    green: "bg-green-600 hover:bg-green-700 text-white focus-visible:ring-green-500",
   };
+  const sizeClasses = isFixed
+    ? "px-3 py-3 sm:px-6 rounded-full shadow-lg text-sm sm:text-base"
+    : "px-4 py-3 sm:px-8 rounded-lg shadow-lg text-sm sm:text-base";
+  const classes = `${baseClasses} ${variants[variant] || variants.green} ${sizeClasses} ${className}`;
+  const content = <>
+    {showIcon && icon && <span aria-hidden="true" className="shrink-0">{icon}</span>}
+    <span className="min-w-0">{children}</span>
+  </>;
 
-  // Fixed - responsive
-  const fixedClasses = isFixed 
-    ? "px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg transform hover:scale-105 flex items-center justify-center gap-2 animate-bounce text-sm sm:text-base"
-    : "px-4 py-2 sm:px-8 sm:py-3 rounded-lg shadow-lg transform hover:-translate-y-1 hover:scale-105 flex items-center justify-center gap-2 text-sm sm:text-base";
-
-  // İkonlar
-  const getIcon = () => {
-    if (!showIcon) return null;
-    
-    if (icon) return icon;
-    
-    
-    return null;
-  };
-
-  const buttonIcon = getIcon();
-
-  // href, link gibi davran
-  const handleClick = (e) => {
-  if (onClick) {
-    onClick(e);
-  }
   if (href) {
-    window.open(href, target, rel);
+    return <a href={href} target={target} rel={rel} onClick={onClick} className={classes} {...props}>{content}</a>;
   }
-};
 
-  return (
-    <div
-      className={`${baseClasses} ${variants[variant]} ${fixedClasses} ${className}`}
-      onClick={handleClick}
-      {...props}
-    >
-      {buttonIcon}
-      {children}
-    </div>
-  );
+  return <button type="button" onClick={onClick} className={classes} {...props}>{content}</button>;
 };
 
 export default CTAButton;

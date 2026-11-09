@@ -7,14 +7,14 @@ export default function Footer() {
 
   
   return (
-    <footer className="bg-gray-900 text-gray-200 ">
+    <footer className="bg-gray-900 pb-[calc(6rem+env(safe-area-inset-bottom))] text-gray-200">
       
       <div className="py-10 border-b border-gray-700">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo, Contact */}
           <div >
             <a href="/" className="flex  items-center py-5">
-              <img src={siteConfig.LOGO} alt="Yeşil İşyeri" className="h-20 " />
+              <img src={siteConfig.LOGO} alt="Yeşil İşyeri" width="85" height="80" loading="lazy" decoding="async" className="h-20 w-auto" />
             <h3 className="text-3xl font-bold text-white">Yeşil <br />İşyeri</h3>
 
 
@@ -135,7 +135,7 @@ export default function Footer() {
                 href={siteConfig.SOCIAL_LINKS.FACEBOOK}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-400 hover:text-blue-500"
+                aria-label="Facebook" className="inline-flex min-h-11 min-w-11 items-center justify-center text-gray-400 hover:text-blue-500"
               >
                 <Facebook className="w-4 h-4" />
               </a>
@@ -145,7 +145,7 @@ export default function Footer() {
                 href={siteConfig.SOCIAL_LINKS.X}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-400 hover:text-blue-400"
+                aria-label="X hesabı" className="inline-flex min-h-11 min-w-11 items-center justify-center text-gray-400 hover:text-blue-400"
               >
                 <Twitter className="w-4 h-4" />
               </a>
@@ -155,7 +155,7 @@ export default function Footer() {
                 href={siteConfig.SOCIAL_LINKS.INSTAGRAM}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-400 hover:text-pink-500"
+                aria-label="Instagram" className="inline-flex min-h-11 min-w-11 items-center justify-center text-gray-400 hover:text-pink-500"
               >
                 <Instagram className="w-4 h-4" />
               </a>

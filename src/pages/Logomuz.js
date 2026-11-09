@@ -27,7 +27,11 @@ const Logomuz = () => {
               <img
                 src={item.IMAGE}
                 alt={item.TITLE}
-                className="mx-auto max-h-64 object-contain"
+                width={item.WIDTH}
+                height={item.HEIGHT}
+                loading="lazy"
+                decoding="async"
+                className="mx-auto h-auto max-h-64 w-auto max-w-full object-contain"
               />
             </div>
           ))}

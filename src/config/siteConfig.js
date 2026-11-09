@@ -1,21 +1,25 @@
-import belediyeLogo from "../assets/logos/Belediye_Logo2.png";
-import logo1 from "../assets/logos/Yesil_isyeri_logo1.png";
-import logo2 from "../assets/logos/Yesil_isyeri_logo2.png";
-import whiteYazi from "../assets/images/logo_yazi3.png";
-import logo from "../assets/logos/Yesil_isyeri_logo.png";
-import tescil from "../assets/images/tescil.png";
+import belediyeLogo from "../assets/optimized/belediye-logo.webp";
+import logo1 from "../assets/optimized/site-logo.webp";
+import logo2 from "../assets/optimized/site-wordmark.webp";
+import whiteYazi from "../assets/optimized/white-wordmark.webp";
+import logo from "../assets/optimized/yesil-isyeri-logo.webp";
+import tescil from "../assets/optimized/tescil.webp";
 
-import heroVideo from "../assets/videos/yisyeriVideo.mp4";
-import basindabiz from "../assets/videos/basindabiz.mp4";
-import marsLojistikVideo from "../assets/videos/2026-255_Ruh-Mars_Lojstik_Uluslararasi_Tasimacilik.mp4";
+import heroVideo from "../assets/optimized/yesil-isyeri-film.mp4";
+import heroLoop from "../assets/optimized/hero-loop.mp4";
+import heroPoster from "../assets/optimized/hero-poster.webp";
+import basindabiz from "../assets/optimized/show-news.mp4";
+import showPoster from "../assets/optimized/show-poster.webp";
+import marsLojistikVideo from "../assets/optimized/mars-news.mp4";
+import marsPoster from "../assets/optimized/mars-poster.webp";
 
-import aboutImage1 from "../assets/images/about/Image1.jpg";
-import aboutImage2 from "../assets/images/about/Image2.jpg";
-import aboutImage3 from "../assets/images/about/Image3.jpg";
+import aboutImage1 from "../assets/optimized/about-1.webp";
+import aboutImage2 from "../assets/optimized/about-2.webp";
+import aboutImage3 from "../assets/optimized/about-3.webp";
 
 
 
-import president from "../assets/images/HasanAkgun.png";
+import president from "../assets/optimized/president.webp";
 
 
 
@@ -25,9 +29,9 @@ const siteConfig = {
 
   
   PRESS_DATA: [
-    { id: 1, title: "Show", video: basindabiz },
-    { id: 2, title: "yesilisyeri", video: heroVideo },
-    { id: 3, title: "Mars Lojistik Uluslararası Taşımacılık", video: marsLojistikVideo },
+    { id: 1, title: "Show Haber", video: basindabiz, poster: showPoster },
+    { id: 2, title: "Yeşil İşyeri", video: heroVideo, poster: heroPoster },
+    { id: 3, title: "Mars Lojistik Uluslararası Taşımacılık", video: marsLojistikVideo, poster: marsPoster },
   ],
   PRESS_DATA_APP: {
     TITLE: "Basında Biz",
@@ -113,6 +117,8 @@ Böylece hem çevreyi koruyor hem de işletmelerimizin enerji faturalarında tas
   CTA2TEXT: "Bücep Grubuna Katılın",
   CTA2URL: "https://bucep.peerbie.com/X1Ft8OUiiXb",
   HERO_VIDEO: heroVideo,
+  HERO_BACKGROUND_VIDEO: heroLoop,
+  HERO_POSTER: heroPoster,
 
   loading: "Yükleniyor...",
 
@@ -170,8 +176,8 @@ Böylece hem çevreyi koruyor hem de işletmelerimizin enerji faturalarında tas
   },
 
   LOGOS: [
-    { id: 1, TITLE: "", IMAGE: logo },
-    { id: 2, TITLE: "", IMAGE: tescil },
+    { id: 1, TITLE: "Yeşil İşyeri Logosu", IMAGE: logo, WIDTH: 512, HEIGHT: 485 },
+    { id: 2, TITLE: "Marka Tescil Belgesi", IMAGE: tescil, WIDTH: 848, HEIGHT: 1200 },
   ],
 
   form: {

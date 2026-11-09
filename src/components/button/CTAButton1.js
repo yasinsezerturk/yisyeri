@@ -10,7 +10,6 @@ const CTAButton1 = ({ isFixed = false, children, ...props }) => {
       isFixed={isFixed}
       variant="green"
       icon={greenIcon}
-      className={isFixed ? "mx-2" : ""}
       {...props}
     >
       {children}

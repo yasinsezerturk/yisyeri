@@ -1,19 +1,23 @@
-jest.mock("axios", () => ({
-  create: jest.fn(() => ({ get: jest.fn() })),
-  isAxiosError: (error) => Boolean(error.isAxiosError),
+import { vi } from "vitest";
+
+const { get } = vi.hoisted(() => ({ get: vi.fn() }));
+vi.mock("axios", () => ({
+  default: {
+    create: vi.fn(() => ({ get })),
+    isAxiosError: (error) => Boolean(error.isAxiosError),
+  },
 }));
 
 let api;
-let get;
 const loginXml = '<string xmlns="http://tempuri.org/">test-session</string>';
 const row = (id) => ({Cells:[{ColumnName:"vw_yesil_isyeri.objectid",Value:id},{ColumnName:"vw_yesil_isyeri.isyeri_unvani",Value:`İşyeri ${id}`} ]});
 
-beforeEach(() => {
-  jest.resetModules();
+beforeEach(async () => {
+  vi.resetModules();
+  get.mockReset();
   process.env.REACT_APP_API_USERNAME = "test-user";
   process.env.REACT_APP_API_PASSWORD = "test-password";
-  api = require("./partnersApi");
-  get = require("axios").create.mock.results[0].value.get;
+  api = await import("./partnersApi");
 });
 
 it("eşzamanlı liste ve detay çağrılarında bir giriş ve bir sorgu yapar", async () => {

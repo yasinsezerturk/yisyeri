@@ -1,15 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const PageCard = ({ id, name, image, extraInfo }) => {
-
-  const navigate = useNavigate();
-  
-  const handleClick = () => { navigate(`/details/${id}`);};
+const PageCard = ({ name, image, extraInfo }) => {
 
   return (
     <div
-      onClick={handleClick}
       className="flex flex-col bg-white shadow-md rounded-2xl hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
     >
       <div className="p-6 flex flex-col flex-1">

@@ -31,6 +31,10 @@ const About = () => {
               <div className="relative overflow-hidden rounded-2xl shadow-xl transition-all duration-500 hover:shadow-2xl">
                 <img
                   src={section.IMAGE}
+                  width="900"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   alt={section.TITLE}
                   className="w-full h-auto object-cover"
                 />

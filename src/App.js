@@ -6,7 +6,6 @@ import Contact from "./pages/Contact";
 import AboutPresident from "./pages/AboutPresident";
 import Logomuz from "./pages/Logomuz";
 import PartnerDetailsPage from "./pages/partners/PartnerDetailsPage";
-import TestPage from "./test/TestPage";
 
 
 export default function App() {
@@ -31,7 +30,6 @@ export default function App() {
         <Route path="/iletisim" element={<Contact />} />
         <Route path="/logomuz" element={<Logomuz />} />
 
-        <Route path="/test" element={<TestPage />} />
         <Route path="*" element={<div className="p-12 text-center"><h1>Sayfa bulunamadı</h1><a href="/">Ana sayfaya dön</a></div>} />
       </Routes>
     </Router>

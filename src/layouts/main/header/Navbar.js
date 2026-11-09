@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import siteConfig from "../../../config/siteConfig";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
@@ -14,7 +27,7 @@ const Navbar = () => {
     <>
       {/* Desktop Navbar */}
       <div className="hidden xl:flex items-center space-x-10">
-        <nav className="flex flex-row items-center space-x-10">
+        <nav aria-label="Ana menü" className="flex flex-row items-center space-x-10">
           {siteConfig.NAVLINKS.map((link) => (
             <Link
               key={link.TO}
@@ -44,8 +57,13 @@ const Navbar = () => {
       {/* Hamburger */}
       <div className="xl:hidden flex items-center">
         <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="text-gray-700 focus:outline-none"
+          ref={menuButtonRef}
+          type="button"
+          aria-label={isMobileMenuOpen ? "Menüyü kapat" : "Menüyü aç"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
         >
           {isMobileMenuOpen ? (
             <svg
@@ -80,15 +98,14 @@ const Navbar = () => {
       </div>
 
       {/* Mobile */}
-      {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-lg px-6 py-6 flex flex-col items-start space-y-4 xl:hidden animate-fadeIn z-40">
-          <nav className="flex flex-col space-y-4 items-start pl-4 w-full">
+        <div id="mobile-navigation" hidden={!isMobileMenuOpen} className={`${isMobileMenuOpen ? "flex" : "hidden"} absolute top-full left-0 w-full max-h-[calc(100dvh-5rem)] overflow-y-auto bg-white shadow-lg px-6 py-6 flex-col items-start space-y-4 xl:hidden z-40`}>
+          <nav aria-label="Mobil ana menü" className="flex flex-col space-y-4 items-start pl-4 w-full">
             {siteConfig.NAVLINKS.map((link) => (
               <Link
                 key={link.TO}
                 to={link.TO}
                 onClick={handleLinkClick}
-                className="text-gray font-medium whitespace-nowrap duration-300 hover:shadow-lg"
+                className="inline-flex min-h-11 items-center rounded text-gray font-medium whitespace-nowrap duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
               >
                 {link.NAME}
               </Link>
@@ -125,7 +142,6 @@ const Navbar = () => {
             </a>
           </div>
         </div>
-      )}
     </>
   );
 };

@@ -14,16 +14,19 @@ const AboutPresident = () => {
 
           {/* Text */}
           <div className="flex flex-col justify-center  bg-gray-100 p-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 ">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 ">
               {item.TITLE}
-            </h2>
+            </h1>
             <p className="text-lg text-gray-600">{item.TEXT}</p>
           </div>
            {/* Image */}
           <div className="relative">
             <img
               src={item.IMAGE}
-              alt={item.TEXT}
+              alt="Başkanın mesajı"
+              width="647"
+              height="816"
+              decoding="async"
               className="object-cover w-full h-full"
             />
             <div className="absolute inset-0" />

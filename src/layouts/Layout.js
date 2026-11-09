@@ -24,10 +24,10 @@ const Layout = ({ children }) => {
       
       {/* Fixed CTA button */}
       {showCTA && (
-        <div className="fixed bottom-6 left-4 right-4 flex justify-between z-50 md:left-6 md:right-6">
-          <CTAButton2 className ="cursor-pointer" isFixed={true} href={siteConfig.CTA2URL} >  {siteConfig.CTATEXT}
+        <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 grid grid-cols-2 gap-3 z-40 sm:flex sm:justify-between md:left-6 md:right-6">
+          <CTAButton2 isFixed={true} href={siteConfig.CTA2URL} >  {siteConfig.CTA2TEXT}
           </CTAButton2>
-          <CTAButton1 className ="cursor-pointer" isFixed={true} href={siteConfig.CTAURL} >   {siteConfig.CTATEXT}
+          <CTAButton1 isFixed={true} href={siteConfig.CTAURL} >   {siteConfig.CTATEXT}
           </CTAButton1>
          
         </div>

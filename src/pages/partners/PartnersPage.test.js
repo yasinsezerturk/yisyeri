@@ -1,11 +1,12 @@
+import { vi } from "vitest";
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import PartnersPage from "./PartnersPage";
 import { usePartners } from "../../hooks/UsePartners";
 
-jest.mock("../../hooks/UsePartners");
-jest.mock("../../layouts/Layout", () => ({children}) => <main>{children}</main>);
-jest.mock("../../components/pageCards/PageContainer", () => ({partners}) => <div data-testid="partners">{partners.map((partner) => <span key={partner.objectid}>{partner.isyeri_unvani}</span>)}</div>);
+vi.mock("../../hooks/UsePartners");
+vi.mock("../../layouts/Layout", () => ({ default: ({children}) => <main>{children}</main> }));
+vi.mock("../../components/pageCards/PageContainer", () => ({ default: ({partners}) => <div data-testid="partners">{partners.map((partner) => <span key={partner.objectid}>{partner.isyeri_unvani}</span>)}</div> }));
 
 const rows = (count) => Array.from({length:count}, (_,index) => ({objectid:index,isyeri_unvani:`İşyeri ${index}`}));
 

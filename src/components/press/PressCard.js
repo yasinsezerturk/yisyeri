@@ -1,40 +1,31 @@
 import React from "react";
-import MiniPreviewVideo from "./MiniPreviewVideo";
+import { Play } from "lucide-react";
 
-const PressCard = ({ name, image, video, onClick, className = "" }) => {
-  const isValidSrc = video && video.trim() !== "";
-
-  return (
-    <div
-      className={`bg-white shadow-md rounded-lg overflow-hidden cursor-pointer hover:shadow-xl transition transform hover:-translate-y-1 duration-300 flex flex-col h-full ${className}`}
-      onClick={onClick}
-    >
-      {/* Video varsa */}
-      {isValidSrc ? (
-        <div className="relative w-full aspect-video bg-black overflow-hidden">
-          <video
-            src={video}
-            className="w-full h-full object-cover"
-            muted
-            playsInline
-          />
-          <MiniPreviewVideo src={video} previewTime={5000} />
-        </div>
-      ) : image ? (
-        <img src={image} alt={name} className="w-full aspect-video object-cover" />
-      ) : (
-        <div className="w-full aspect-video bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center text-gray-500">
-          <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              fillRule="evenodd"
-              d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
+const PressCard = ({ name, image, poster, onClick, className = "" }) => (
+  <button
+    type="button"
+    aria-label={`${name} videosunu izle`}
+    className={`group flex h-full w-full flex-col overflow-hidden rounded-lg bg-white text-left shadow-md transition-shadow hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4 ${className}`}
+    onClick={onClick}
+  >
+    <span className="relative block aspect-video w-full overflow-hidden bg-gray-900">
+      {(poster || image) && (
+        <img
+          src={poster || image}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          width="640"
+          height="360"
+          className="h-full w-full object-cover"
+        />
       )}
-    </div>
-  );
-};
+      <span className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30" aria-hidden="true">
+        <span className="rounded-full bg-white/95 p-4 text-blue-700 shadow-lg"><Play size={28} fill="currentColor" /></span>
+      </span>
+    </span>
+    <span className="block p-4 font-semibold text-gray-800">{name}</span>
+  </button>
+);
 
 export default PressCard;

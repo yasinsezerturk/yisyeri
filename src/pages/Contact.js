@@ -24,7 +24,7 @@ const Contact = () => {
 
 
         {/* Map data */}
-        <div className="grid items-stretch lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 items-stretch lg:grid-cols-2 gap-12 mb-16">
      
           <div className="relative h-96 min-h-[24rem] rounded-2xl overflow-hidden shadow-xl lg:h-auto">
             <iframe
@@ -49,7 +49,7 @@ const Contact = () => {
             <div className="space-y-6">
               <div className="flex items-start">
                 <MapPin className="text-blue-600 mt-1 mr-4 flex-shrink-0" size={24} />
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-semibold text-gray-800">Adres</h3>
                   <p className="text-gray-700">Fatih Mahallesi Şehremini Sokak. No:1 A Blok Zemin Kat Büyükçekmece/İstanbul</p>
                 </div>
@@ -57,10 +57,10 @@ const Contact = () => {
               
               <div className="flex items-start">
                 <Phone className="text-blue-600 mt-1 mr-4 flex-shrink-0" size={24} />
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-semibold text-gray-800">Telefon</h3>
                   <p className="text-gray-700">
-                    <a href="tel:4440340" className="hover:text-blue-600 transition-colors">
+                    <a href="tel:4440340" className="break-words hover:text-blue-600 transition-colors">
                       444 0 340
                     </a>
                   </p>
@@ -69,10 +69,10 @@ const Contact = () => {
               
               <div className="flex items-start">
                 <Mail className="text-blue-600 mt-1 mr-4 flex-shrink-0" size={24} />
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-semibold text-gray-800">E-posta</h3>
                   <p className="text-gray-700">
-                    <a href="mailto:danisma@bcekmece.bel.tr" className="hover:text-blue-600 transition-colors">
+                    <a href="mailto:danisma@bcekmece.bel.tr" className="break-words hover:text-blue-600 transition-colors">
                       danisma@bcekmece.bel.tr
                     </a>
                   </p>
@@ -81,7 +81,7 @@ const Contact = () => {
               
               <div className="flex items-start">
                 <Clock className="text-blue-600 mt-1 mr-4 flex-shrink-0" size={24} />
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-semibold text-gray-800">Çalışma Saatleri</h3>
                   <p className="text-gray-700">Pazartesi - Cuma: 08:30 - 17:30</p>
                 </div>

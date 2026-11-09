@@ -13,7 +13,7 @@ const PartnerImages = ({ files }) => {
   return (
     <div className="relative w-full max-w-4xl mx-auto">
       <div className="rounded-xl overflow-hidden shadow-md">
-        <img src={image.src} alt={image.label || `Görsel ${currentIndex + 1}`} className="w-full h-80 object-cover" />
+        <img decoding="async" src={image.src} alt={image.label || `Görsel ${currentIndex + 1}`} className="w-full h-80 object-cover" />
       </div>
       {images.length > 1 && <>
         <button aria-label="Önceki görsel" onClick={() => setCurrentIndex((index) => (index - 1 + images.length) % images.length)} className="absolute top-1/2 left-2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100"><ArrowLeft size={20} /></button>
