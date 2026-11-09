@@ -2,13 +2,14 @@ import React from "react";
 import Layout from "../layouts/Layout";
 import { MapPin, Phone, Mail, Clock, Users, ExternalLink } from "lucide-react";
 import PageTitle from "../components/pageCards/PageTitle";
+import siteConfig from "../config/siteConfig";
 
 const Contact = () => {
 
-  const externalFormUrl = "https://ulakbel.bcekmece.bel.tr/WebBasvuru/esitisyerioneri#";
+  const externalFormUrl = siteConfig.CTAURL;
 
   const handleRedirect = () => {
-    window.open(externalFormUrl, "_blank");
+    window.open(externalFormUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -18,15 +19,16 @@ const Contact = () => {
         <PageTitle
           title="  İletişime Geçin"
           subtitle=" Soru, görüş ve önerileriniz için aşağıdaki iletişim kanallarını kullanabilir 
-            veya iletişim formumuzu doldurabilirsiniz."
+            veya Yeşil İşyeri başvuru formuna ulaşabilirsiniz."
         />
 
 
         {/* Map data */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid items-stretch lg:grid-cols-2 gap-12 mb-16">
      
-          <div className="rounded-2xl overflow-hidden shadow-xl h-96">
+          <div className="relative h-96 min-h-[24rem] rounded-2xl overflow-hidden shadow-xl lg:h-auto">
             <iframe
+              className="absolute inset-0 block h-full w-full"
               title="Büyükçekmece Belediyesi Haritası"
               src="https://maps.google.com/maps?q=41.02115252472539,28.5852208036723&hl=tr&z=16&output=embed"
               width="100%"
@@ -92,10 +94,10 @@ const Contact = () => {
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-semibold text-gray-800 mb-4">
-              İletişim Formu
+              Yeşil İşyeri Başvuru Formu
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-              İletişim formumuzu doldurmak için aşağıdaki butona tıklayarak 
+              Yeşil İşyeri başvurusu için aşağıdaki butona tıklayarak
               ilgili sayfaya yönlendirileceksiniz.
             </p>
           </div>
@@ -105,7 +107,7 @@ const Contact = () => {
             className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl flex items-center justify-center mx-auto"
           >
             <ExternalLink size={20} className="mr-2" />
-            İletişim Formuna Git
+            Başvuru Formuna Git
           </button>
 
           <p className="text-gray-500 text-sm mt-4">

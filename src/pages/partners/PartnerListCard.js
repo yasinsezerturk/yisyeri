@@ -6,37 +6,15 @@ import siteConfig from '../../config/siteConfig';
 
 const PartnerListCard = ({ partner }) => {
 
-    //console.log('Partner data:', partner);
-    
-    const cells = partner.Cells || partner.cells || [];
-    const name = partner.isyeri_unvani || partner.name || cells[2]?.DisplayText || siteConfig.DEFAULT_TEXTS.NAME;
-    const yetkili = partner.yetkili_kisi || partner.yetkili || cells[3]?.DisplayText || siteConfig.DEFAULT_TEXTS.CONTACT;
-    const faaliyet = partner.faaliyet_turu || partner.faaliyet || cells[4]?.DisplayText || siteConfig.DEFAULT_TEXTS.ACTIVITY;
-    const calismaSaati = partner.calisma_saati || partner.calismaSaati || cells[10]?.DisplayText || "";
-    const mahalle = partner.mahalle || cells[7]?.DisplayText || "";
-    const yolAdi = partner.yol_adi || partner.yolAdi || cells[8]?.DisplayText || "";
-
-    let image = siteConfig.LOGO;
-    try {
-
-        if (partner.image) {
-            image = partner.image;
-        } else if (partner.files && Array.isArray(partner.files) && partner.files.length > 0) {
-            image = partner.files[0].src;
-        } else {
-            const filesJson = cells[16]?.Value || partner.filesJson || "[]";
-            const files = JSON.parse(filesJson);
-            if (Array.isArray(files) && files.length > 0) {
-                image = files[0]?.src ?? siteConfig.LOGO;
-            }
-        }
-    } catch (err) {
-        console.warn("Resim verisi okunamadı:", err);
-    }
-
-    const objectId = partner.id || partner.objectid || cells.find(
-        (c) => c.ColumnName === siteConfig.API.OBJECT_ID
-    )?.Value || null;
+    const name = partner.isyeri_unvani || siteConfig.DEFAULT_TEXTS.NAME;
+    const yetkili = partner.yetkili_kisi || siteConfig.DEFAULT_TEXTS.CONTACT;
+    const faaliyet = partner.faaliyet_turu || siteConfig.DEFAULT_TEXTS.ACTIVITY;
+    const calismaSaati = partner.calisma_saati || "";
+    const mahalle = partner.mahalle || "";
+    const yolAdi = partner.yol_adi || "";
+    const image = partner.files?.[0]?.src || siteConfig.LOGO;
+    const objectId = partner.objectid;
+    if (objectId === undefined || objectId === null) return null;
 
     return (
         <Link

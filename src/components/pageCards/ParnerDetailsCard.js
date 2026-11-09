@@ -7,6 +7,7 @@ import PageTitle from "./PageTitle";
 
 import { usePartners } from "../../hooks/UsePartners";
 import PartnerImages from "./PartnerImages";
+import { getMapEmbedUrl } from "../../utils/partnerData";
 
 const PartnerDetailsCard = ({ partner, loading, error }) => {
 
@@ -35,6 +36,8 @@ const PartnerDetailsCard = ({ partner, loading, error }) => {
     eposta,
     faaliyet_turu,
   } = partner;
+
+  const mapUrl = getMapEmbedUrl(harita_kodu);
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -91,16 +94,21 @@ const PartnerDetailsCard = ({ partner, loading, error }) => {
           )}
 
           {/* Map */}
-          {harita_kodu && (
+          {mapUrl && (
             <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center border-b border-gray-200 pb-2">
                 <MapPin className="text-blue-600 mr-3" size={28} />
                 Konum Haritası
               </h2>
               <div className="rounded-xl overflow-hidden shadow-md">
-                <div
-                  className="w-full h-80"
-                  dangerouslySetInnerHTML={{ __html: harita_kodu }}
+                <iframe
+                  title="İşyeri konumu"
+                  className="w-full h-80 border-0"
+                  src={mapUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  sandbox="allow-scripts allow-same-origin allow-popups"
+                  allowFullScreen
                 />
               </div>
             </div>
@@ -121,7 +129,7 @@ const PartnerDetailsCard = ({ partner, loading, error }) => {
                 <div>
                   <p className="text-sm text-gray-500">Yetkili Kişi</p>
                   <p className="text-lg font-medium text-gray-800">
-                    {yetkili_kisi}
+                    {yetkili_kisi || "Belirtilmemiş"}
                   </p>
                 </div>
               </div>
@@ -130,9 +138,9 @@ const PartnerDetailsCard = ({ partner, loading, error }) => {
                 <div>
                   <p className="text-sm text-gray-500">Telefon</p>
                   <p className="text-lg font-medium text-gray-800">
-                    <a href={`tel:${telefon}`} className="hover:text-blue-600">
+                    {telefon ? <a href={`tel:${telefon}`} className="hover:text-blue-600">
                       {telefon}
-                    </a>
+                    </a> : "Belirtilmemiş"}
                   </p>
                 </div>
               </div>
@@ -173,7 +181,7 @@ const PartnerDetailsCard = ({ partner, loading, error }) => {
 
           {/* Partners */}
           <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
-            <PartnersList partners={partners} />
+            <PartnersList partners={partners.filter((item) => String(item.objectid) !== String(partner.objectid))} />
           </div>
         </div>
       </div>

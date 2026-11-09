@@ -43,8 +43,8 @@ const PartnersList = ({ partners }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-1 gap-5">
-        {partners.slice(0, 3).map((partner, index) => (
-          <PartnerListCard key={partner.id || `partner-${index}`} partner={partner} />
+        {partners.slice(0, 3).map((partner) => (
+          <PartnerListCard key={partner.objectid} partner={partner} />
         ))}
       </div>
     </div>

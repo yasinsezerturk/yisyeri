@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Logo, Contact */}
           <div >
             <a href="/" className="flex  items-center py-5">
-              <img src={siteConfig.LOGO} alt="Eşit İşyeri" className="h-20 " />
+              <img src={siteConfig.LOGO} alt="Yeşil İşyeri" className="h-20 " />
             <h3 className="text-3xl font-bold text-white">Yeşil <br />İşyeri</h3>
 
 

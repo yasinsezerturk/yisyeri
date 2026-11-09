@@ -7,30 +7,19 @@ export const usePartners = (page = 1, limit = 5) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      
-      try {
-        const partnersDataApi = await getPartners(page, limit);
-
-        if (partnersDataApi && partnersDataApi.length > 0) {
-          setPartners(partnersDataApi);
-      
-
-        } else {
+    let active = true;
+    setLoading(true);
+    setError(null);
+    getPartners(page, limit)
+      .then((data) => { if (active) setPartners(data); })
+      .catch((err) => {
+        if (active) {
+          setError(err.message);
           setPartners([]);
         }
-      } catch (err) {
-        console.error("Partner verisi çekilemedi:", err);
-        setError(err);
-        setPartners([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+      })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
   }, [page, limit]);
 
   return { partners, loading, error };

@@ -33,6 +33,7 @@ const Hero = () => {
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
           src={siteConfig.HERO_VIDEO}
+          playsInline
           autoPlay
           muted
           loop

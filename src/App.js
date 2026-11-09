@@ -31,7 +31,8 @@ export default function App() {
         <Route path="/iletisim" element={<Contact />} />
         <Route path="/logomuz" element={<Logomuz />} />
 
-        <Route path="/test" component={TestPage} />
+        <Route path="/test" element={<TestPage />} />
+        <Route path="*" element={<div className="p-12 text-center"><h1>Sayfa bulunamadı</h1><a href="/">Ana sayfaya dön</a></div>} />
       </Routes>
     </Router>
   );

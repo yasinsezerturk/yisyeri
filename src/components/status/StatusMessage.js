@@ -30,7 +30,7 @@ const StatusMessage = ({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </div>
-        <p className="text-red-500 text-lg font-medium">{error}</p>
+        <p className="text-red-500 text-lg font-medium">{typeof error === "string" ? error : error.message || "Bir hata oluştu."}</p>
         {type === "detailed" && (
           <p className="text-gray-500 mt-2">Lütfen daha sonra tekrar deneyin.</p>
         )}

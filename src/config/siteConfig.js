@@ -74,7 +74,7 @@ API:{
     DESCRIPTION: `Büyükçekmece Belediyesi olarak “Yeşil İşyeri Projesi” ile işletmelerimizi çevre dostu ve 
 enerji verimli hale getiriyoruz. Projeyi tamamlayan işletmelerimize sertifikalar veriyor, 
 vergi ve harçlarda indirimlerle destekliyoruz. 
-öylece hem çevreyi koruyor hem de işletmelerimizin enerji faturalarında tasarruf sağlıyoruz.`,
+Böylece hem çevreyi koruyor hem de işletmelerimizin enerji faturalarında tasarruf sağlıyoruz.`,
 
 
 
@@ -93,7 +93,7 @@ vergi ve harçlarda indirimlerle destekliyoruz.
   SITE_DESCRIPTION_2: "Büyükçekmece Belediyesi Ruhsat ve Denetim Müdürlüğü",
 
   SITE_META_DESCRIPTION: "",
-  KEYWORDS: "Büyükçekmece, Eşit İşyeri, belediye, proje, destek, işyeri",
+  KEYWORDS: "Büyükçekmece, Yeşil İşyeri, belediye, proje, destek, işyeri",
   AUTHOR: "Büyükçekmece Belediyesi",
   THEMECOLOR: "#d63384",
 
